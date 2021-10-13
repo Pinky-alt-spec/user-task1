@@ -78,10 +78,19 @@ WSGI_APPLICATION = 'mytask.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'task_db',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '',
     }
 }
+
+#  'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 
 
 # Password validation
