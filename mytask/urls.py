@@ -19,12 +19,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts import views as accounts_views
+from accounts import views as accounts_view
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('task.urls')),
 
-    path('register/', accounts_views.register, name='account-register'),
+    path('register/', accounts_view.register, name='account-register'),
+    path('', auth_views.LoginView.as_view(template_name='task/accounts/login.html'), name='account-login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='task/accounts/logout.html'), name='account-logout'),
 
  ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

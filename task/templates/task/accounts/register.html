@@ -2,6 +2,8 @@
 
 {% block title %} Register User{% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div class="container">
@@ -10,14 +12,13 @@
             <div class="border bg-white p-3">
                 <h3>User Registration</h3>
                 <hr>
-                <form method=POST>
-                    {{ form }}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
                     <input class="btn btn-success" type="submit" value="Register">
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 {% endblock %}
