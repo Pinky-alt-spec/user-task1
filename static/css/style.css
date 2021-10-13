@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(230, 227, 227);
+}
+
+.my-card:hover {
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
+.my-card h4{
+    font-size: 20px;
+}
+
