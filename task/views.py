@@ -15,4 +15,4 @@ def deleted(request):
     return render(request, 'task/dashboard/deleted.html')
 
 def profile(request):
-    return render(request, 'task/profile.html')
+    return render(request, 'task/accounts/profile.html')
