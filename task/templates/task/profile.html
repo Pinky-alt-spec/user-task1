@@ -56,24 +56,50 @@
         
         </div>
         <div class="col-md-8">
-            <div class="card-header bg-info text-white">
-                Profile Page
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-8">
-                        <span class="h4">User Profile Page</span>
-                        <a class="btn btn-info btn-sm float-right" href="">Edit</a>
-                        <hr>
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Profile Page
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span class="h4">User Profile Information</span>
+                            <a class="btn btn-info btn-sm float-right" href="">Edit</a>
+                            <hr>
+                            
+                            <table class="table bg-white table-borderless">
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">Name</th>
+                                    <td>Username</td>
+                                    
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">Email</th>
+                                    <td>User@mail.com</td>
+                                 
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">Phone</th>
+                                    <td>076 768 7667</td>
 
-                    </div>                
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">Address</th>
+                                    <td>59 Plein street Cape Town</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>      
+                        <div class="col-md-4">
+                            <img class="img-thumbnail" src="{{ MEDIA_URL }}man.jpeg" alt="">        
+                        </div>          
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <img class="img-thumbnail" src="" alt="">        
-        </div>
-
     </div>
 </div>
 <!--End Table-->
