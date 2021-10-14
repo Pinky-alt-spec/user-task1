@@ -25,8 +25,8 @@ class Current(models.Model):
 class Completed(models.Model):
     task = models.ForeignKey(Current, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    quantity = models.PositiveBigIntegerField(null=True)
     date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS, null=True)
 
 
     class Meta:
@@ -36,3 +36,13 @@ class Completed(models.Model):
         return f'{self.task} was completed by {self.username}'
 
 
+class Deleted(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS, null=True)
+
+    class Meta:
+        verbose_name_plural = "Deleted"
+
+    def __str__(self):
+        return f'{self.user} was deleted by {self.username}'

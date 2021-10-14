@@ -1,0 +1,51 @@
+{% extends 'task/partials/base.html' %}
+{% block title %} Home Page{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+	<div class="row mt-4">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header bg-info text-white">
+					About Information 
+				</div>
+				<div class="card-body">
+					<h5>Pinky Mononyane</h5>
+					<h5>Python Developer</h5>
+					<h5>Task Project</h5>
+					<hr>
+					<div>
+						<div class="col-md-12">
+							<a class="text-decoration-none text-dark">
+								<div class="my-card shadow p-3">
+									<p>This is an exciting project that runs on Python using Django Framework. The framework enables rapid development of secure, robust and maintainability for our Task project.
+									The development consist of components that makes up both the front and backend. </p>
+									<ul>
+										<li>1. Model - I have used Model for data description in the database</li>
+										<li>2. Views - Handles the display of users</li>
+										<li>3. Templates - Controls the user Interaction</li>
+										<li>4. Controller(Views) - Presentation layer for users</li>
+									</ul>
+                                    <ul>
+                                        <li>I have also included signals in the project. This causes user profile to be triggered when the user is registering. This prevents the user to create an account and then a profile. With Signals when the user registers, profile account is automatically created.  </li>
+                                    </ul>
+
+                                     <ul>
+                                        <li>I have also used Django Signals, this simplify the implementation of our decoupled systems in various ways. They help us implement reusable applications and instead of reimplementing functionality severally, or modifying other parts of the system, we can just respond to signals without affecting other code</li>
+                                        <li>for eg. The user does not need to register and create a profile. With signals, when the user registers, the profile is automatically created.</li>
+                                    </ul>
+									<p>There are still many more that goes into Python/Django development, we can discuss this in our next meeting :) It'll be fun </p>
+								</div>
+							</a>			
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

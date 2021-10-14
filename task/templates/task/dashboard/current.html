@@ -1,4 +1,5 @@
 {% extends 'task/partials/base.html' %}
+
 {% block title %} Current Tasks{% endblock %}
 {% load crispy_forms_tags %}
 
@@ -6,24 +7,34 @@
 
 {% include 'task/partials/topbar.html' %}
 
+
 <div class="container">
     <div class="row my-4">
         <div class="col-md-4">
+            {% for message in messages %}
+            {% if message %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endif %}
+            {% endfor %}
+
             <div class="border bg-white p-3">
                 <h4>Add New Task</h4>
                 <hr>
-                <form method="POST" action="">    
+                <form method="POST">    
                     {% csrf_token %}
                     {{ form|crispy }}    
                     <input class="btn btn-success btn-block" type="submit" value="Add Task">
                 </form>
+                
             </div>
         </div>
         <div class="col-md-8">
             <table class="table bg-white">
                 <thead class="bg-info">
                     <tr class="text-white">
-                    <th scope="col">#</th>
+                  
                     <th scope="col">Task Name</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Status</th>
@@ -31,20 +42,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for task in tasks %}
+                    {% for task in curr_tasks %}
                     <tr>
-                    <th scope="row">1</th>
+                    
                     <td>{{ task.task }}</td>
                     <td>{{ task.date }}</td>
                     <td>{{ task.status }}</td>
                     <td>
-                        <a class="btn btn-info btn-sm" href="">Edit</a>
+                        <a class="btn btn-info btn-sm" href="{% url 'dashboard-current-update' task.id %}">Edit</a>
                         <a class="btn btn-danger btn-sm" href="{% url 'dashboard-current-delete' task.id %}">Delete</a>
                     </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' %}">Export Excel Sheet</a>
         </div>
 
     </div>

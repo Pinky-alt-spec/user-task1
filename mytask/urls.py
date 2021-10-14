@@ -21,6 +21,7 @@ from django.urls import path, include
 
 from accounts import views as accounts_view
 from django.contrib.auth import views as auth_views
+from task import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,13 @@ urlpatterns = [
     path('profile-update/', accounts_view.profile_update, name='account-profile-update'),
     path('', auth_views.LoginView.as_view(template_name='task/accounts/login.html'), name='account-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='task/accounts/logout.html'), name='account-logout'),
+
+    path('export/excel', views.export_users_xls, name='export_excel'),
+    # path('password_reset/', auth_views.PasswordResetView.as_view(), name='password-reset'),
+    # path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(), name='password-reset-done'),
+    # path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    # path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
+
 
  ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

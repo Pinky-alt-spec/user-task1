@@ -25,7 +25,7 @@
 								<a class="text-decoration-none text-dark" href="{% url 'dashboard-current' %}">
 									<div class="my-card shadow text-center p-3">
 										<h4>Current Task</h4>
-										<h3>5</h3>
+										<h3>{{ curr_tasks_count }}</h3>
 									</div>
 								</a>			
 							</div>
@@ -33,7 +33,7 @@
 								<a class="text-decoration-none text-dark" href="{% url 'dashboard-completed' %}">
 									<div class="my-card shadow text-center p-3">
 										<h4>Completed Task</h4>
-										<h3>5</h3>
+										<h3>{{ comp_tasks_count }}</h3>
 									</div>
 								</a>			
 							</div>
@@ -41,7 +41,7 @@
 								<a class="text-decoration-none text-dark" href="{% url 'dashboard-deleted' %}">
 									<div class="my-card shadow text-center p-3">
 										<h4>Deleted Task</h4>
-										<h3>5</h3>
+										<h3>{{ del_tasks_count }}</h3>
 									</div>
 								</a>			
 							</div>

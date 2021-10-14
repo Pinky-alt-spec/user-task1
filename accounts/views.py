@@ -1,7 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -10,6 +11,8 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Welcome {username}!!! Your account is created \n ! Proceed to Login :)')
             return redirect('account-login')
     else:
         form = CreateUserForm()
@@ -27,7 +30,7 @@ def profile(request):
 def profile_update(request):
     if request.method == 'POST':
         userform = UserUpdateForm(request.POST, instance=request.user)
-        profileform = UserUpdateForm(request.POST, request.FILES, request.user.profile)
+        profileform = UserUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if userform.is_valid() and profileform.is_valid():
             userform.save()
             profileform.save()
@@ -42,5 +45,5 @@ def profile_update(request):
     return render(request, 'task/accounts/profile_update.html', context)
 
 
-def login(request):
+def loginPage(request):
     return render(request, 'task/accounts/login.html')
