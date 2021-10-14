@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CurrentForm
 from django.contrib import messages
 
-
+import datetime
 import xlwt
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -145,57 +145,39 @@ def deleted(request):
     return render(request, 'task/dashboard/deleted.html', context)
 
 
-def export_users_xls(request):
-    response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="current.xls"'
-
+def export_excel(request):
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=current.xls' + \
+        str(datetime.datetime.now())+'.xls'
+  
     wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Current Tasks') # this will make a sheet named Current Tasks
-
-    # Sheet header, first row
+    ws = wb.add_sheet('Current Tasks')
     row_num = 0
 
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    # Current Task Page
-
     columns = ['task', 'date', 'status', ]
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column 
 
-    # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
-
     curr_tasks = Current.objects.filter(status='Current').values_list('task', 'date', 'status')
+  
     for row in curr_tasks:
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)
-
+        
+    wb.save(response)
     
 
-    # completed Task Page
-
-
-    columns = ['task', 'date', 'status', ]
-
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column 
-
-    # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
-
-    curr_tasks = Current.objects.filter(status='Current').values_list('task', 'date', 'status')
-    for row in curr_tasks:
+    comp_tasks = Completed.objects.filter(status='Completed').values_list('task', 'date', 'status')
+    for row in comp_tasks:
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)
-
-
-
+        
     wb.save(response)
-
     return response
-
+    

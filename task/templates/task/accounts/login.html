@@ -22,8 +22,9 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
+                <hr>
                 <input class="btn btn-success" type="submit" value="Login">
-                {% comment %} <a class="mx-4" href="{% url 'password-reset' %}">Forgot Password?</a> {% endcomment %}
+                <a class="mx-4" href="{% url 'password-reset' %}">Forgot Password?</a>
             </form>
         </div>
     </div>

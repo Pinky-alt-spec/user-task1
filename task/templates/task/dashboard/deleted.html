@@ -17,7 +17,7 @@
                         <tr class="text-white">
                        
                         <th scope="row">Task Name</th>
-                        <th scope="col">Date Created</th>
+                        <th scope="col">Date Deleted</th>
                         <th scope="col">Status</th>                    
                         </tr>
                     </thead>
@@ -32,8 +32,9 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                 {% comment %} <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' %}">Export Excel Sheet</a> {% endcomment %}
             </div>
-
+        </div>
     </div>
 </div>
 {% endblock %}
