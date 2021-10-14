@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include('task.urls')),
 
     path('register/', accounts_view.register, name='account-register'),
+    path('profile/', accounts_view.profile, name='account-profile'),
+    path('profile-update/', accounts_view.profile_update, name='account-profile-update'),
     path('', auth_views.LoginView.as_view(template_name='task/accounts/login.html'), name='account-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='task/accounts/logout.html'), name='account-logout'),
 

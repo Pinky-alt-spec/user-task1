@@ -33,6 +33,6 @@ class Completed(models.Model):
         verbose_name_plural = "Completed"
 
     def __str__(self):
-        return f'{self.task} was completed by {self.user}'
+        return f'{self.task} was completed by {self.username}'
 
 
