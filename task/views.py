@@ -145,35 +145,38 @@ def deleted(request):
     return render(request, 'task/dashboard/deleted.html', context)
 
 
-def export_excel(request):
+def export_excel(request, id):
+    if id == 1: # current
+        obj = Current
+        obj_name = 'Current'
+    elif id == 2: # completed
+        obj = Completed
+        obj_name = 'Completed'
+    elif id == 3: # Deleted
+        obj = Deleted
+        obj_name = 'Deleted'
+    else:
+        print('no id')
+
+    
     response=HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename=current.xls' + \
-        str(datetime.datetime.now())+'.xls'
+    response['Content-Disposition'] = f'attachment; filename={obj_name}.xls' 
   
     wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Current Tasks')
+    ws = wb.add_sheet(f'{obj_name} Tasks')
     row_num = 0
 
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['task', 'date', 'status', ]
+    columns = ['task', 'user', 'date', 'status']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column 
 
-    curr_tasks = Current.objects.filter(status='Current').values_list('task', 'date', 'status')
-  
-    for row in curr_tasks:
-        row_num += 1
-        for col_num in range(len(row)):
-            ws.write(row_num, col_num, row[col_num], font_style)
-        
-    wb.save(response)
+    curr_tasks = Current.objects.filter(status=f'{obj_name}').values_list('task', 'user', 'date', 'status')
     
-
-    comp_tasks = Completed.objects.filter(status='Completed').values_list('task', 'date', 'status')
-    for row in comp_tasks:
+    for row in curr_tasks:
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)

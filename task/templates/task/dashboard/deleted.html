@@ -15,7 +15,8 @@
                 <table class="table bg-white">
                     <thead class="bg-info">
                         <tr class="text-white">
-                       
+
+                        <th scope="row">#</th>
                         <th scope="row">Task Name</th>
                         <th scope="col">Date Deleted</th>
                         <th scope="col">Status</th>                    
@@ -24,7 +25,7 @@
                     <tbody>
                     {%  for del_task in del_tasks%}
                         <tr>
-                        
+                        <td></td>
                         <td>{{ del_task.task }}</td>
                         <td>{{ del_task.date }}</td>
                         <td>{{ del_task.status }}</td>
@@ -32,7 +33,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                 {% comment %} <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' %}">Export Excel Sheet</a> {% endcomment %}
+                <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' 3 %}">Export Excel Sheet</a>
             </div>
         </div>
     </div>

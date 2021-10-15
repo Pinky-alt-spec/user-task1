@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -11,7 +12,8 @@ STATUS = (
 
 class Current(models.Model):
     task = models.CharField(max_length=100, null=True)
-    date = models.DateField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(default=now, editable=False)
     status = models.CharField(max_length=20, choices=STATUS, null=True)
 
 
@@ -24,8 +26,7 @@ class Current(models.Model):
 
 class Completed(models.Model):
     task = models.ForeignKey(Current, on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=now, editable=False)
     status = models.CharField(max_length=20, choices=STATUS, null=True)
 
 
@@ -37,8 +38,8 @@ class Completed(models.Model):
 
 
 class Deleted(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField(auto_now_add=True)
+    task = models.ForeignKey(Current, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(default=now, editable=False)
     status = models.CharField(max_length=20, choices=STATUS, null=True)
 
     class Meta:

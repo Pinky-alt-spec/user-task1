@@ -35,7 +35,7 @@
             <table class="table bg-white">
                 <thead class="bg-info">
                     <tr class="text-white">
-                  
+                    <th scope="col">#</th>
                     <th scope="col">Task Name</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Status</th>
@@ -45,7 +45,7 @@
                 <tbody>
                     {% for task in curr_tasks %}
                     <tr>
-                    
+                    <td></td>
                     <td>{{ task.task }}</td>
                     <td>{{ task.date }}</td>
                     <td>{{ task.status }}</td>
@@ -57,7 +57,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' %}">Export Excel Sheet</a>
+            <a class="btn btn-success btn-sm float-right" href="{% url 'export_excel' 1 %}">Export Excel Sheet</a>
         </div>
 
     </div>
