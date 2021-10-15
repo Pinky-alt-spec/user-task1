@@ -108,6 +108,8 @@ def completed_update(request, pk):
     return render(request, 'task/dashboard/completed_update.html', context)
 
 
+def password_reset_confirm(request):
+    print(request.POST)
 
 @login_required
 def completed(request):

@@ -11,8 +11,8 @@ class Profile(models.Model):
     email = models.EmailField(max_length=200, null=True)
     address = models.CharField(max_length=200, null=True)
     image = models.ImageField(default='man.jpeg', upload_to='images')
-    # idcopy = models.FileField(upload_to='Profile_docs')
-    # proofofaddress = models.FileField(upload_to='Profile_docs')
+    #idcopy = models.FileField(upload_to='Profile_docs')
+    #proofofaddress = models.FileField(upload_to='Profile_docs')
 
     def __str__(self):
         return f'{self.user.username}--Profile'
