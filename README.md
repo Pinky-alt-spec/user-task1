@@ -5,7 +5,7 @@
 
 ## To run this project:
 
-- Clone it from github code
+- Clone from github code
 
 ```git clone https://github.com/Pinky-alt-spec/user-task.git ```
 
