@@ -10,6 +10,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 
+
+def about(request):
+    
+    return render(request, 'task/dashboard/about.html')
 # Create your views here.
 
 @login_required
@@ -24,10 +28,6 @@ def index(request):
     }
     return render(request, 'task/dashboard/index.html', context)
 
-
-def about(request):
-    
-    return render(request, 'task/dashboard/about.html')
 
 @login_required
 def current(request):
@@ -58,6 +58,7 @@ def current(request):
     return render(request, 'task/dashboard/current.html', context)
 
 
+@login_required
 # Current update and delete
 def current_delete(request, pk):
     curr_del = Current.objects.get(id=pk)
@@ -67,7 +68,7 @@ def current_delete(request, pk):
 
     return render(request, 'task/dashboard/current_delete.html')
 
-
+@login_required
 def current_update(request, pk):
     curr_up = Current.objects.get(id=pk)
     if request.method == "POST":
@@ -82,7 +83,7 @@ def current_update(request, pk):
     }
     return render(request, 'task/dashboard/current_update.html', context)
 
-
+@login_required
 # Completed update and delete
 def completed_delete(request, pk):
     comp_del = Current.objects.get(id=pk)
@@ -92,7 +93,7 @@ def completed_delete(request, pk):
 
     return render(request, 'task/dashboard/completed_delete.html')
 
-
+@login_required
 def completed_update(request, pk):
     comp_up = Current.objects.get(id=pk)
     if request.method == "POST":
@@ -106,10 +107,6 @@ def completed_update(request, pk):
         'form': form,
     }
     return render(request, 'task/dashboard/completed_update.html', context)
-
-
-def password_reset_confirm(request):
-    print(request.POST)
 
 @login_required
 def completed(request):
@@ -146,7 +143,7 @@ def deleted(request):
     
     return render(request, 'task/dashboard/deleted.html', context)
 
-
+@login_required
 def export_excel(request, id):
     if id == 1: # current
         obj = Current
