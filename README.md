@@ -29,7 +29,7 @@
 - Set up your database
 
 ```pip install mysqlclient```
-#### Had to use another computer since this my mac was not compatible
+##### Had to use another computer for mysql setup since mac was not compatible
 
 ---
 
